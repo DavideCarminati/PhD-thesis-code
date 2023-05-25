@@ -25,7 +25,7 @@ rng('default');
 % x = x';
 
 % Math function
-% N = 100;
+N = 100;
 x = linspace(-pi/2, pi/2, N);
 % x = linspace(-5, 5, 50);
 [ X1_train, X2_train ] = ndgrid(x,x);

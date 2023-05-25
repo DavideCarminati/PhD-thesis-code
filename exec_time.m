@@ -111,20 +111,25 @@ fprintf("%.4e\n", mean_time_fa);
 %     elapsed_mult(kk) = times(kk).elapsed_mult;
 % end
 
-num_eig = N_vec;
+num_eig = N_vec.^2;
 plot(num_eig, elapsed_inv);
 hold on
 grid on
 plot(num_eig, elapsed_inv_1D)
 % plot(num_eig, elapsed_mult);
 % plot(num_eig, elapsed_inv + elapsed_mult);
-legend('Inversion time 2D', 'Inversion time 1D')
+xlabel('$N$')
+ylabel('Time [$s$]')
+legend('Inversion time 2D', 'Inversion time 1D', 'Location', 'Best')
 
 figure
-hold on, grid on
-plot(num_eig, elapsed_mult, 'b')
-plot(num_eig, elapsed_mult_1D, 'r')
 
-plot(num_eig, elapsed_mult, 'bo', 'HandleVisibility','off')
-plot(num_eig, elapsed_mult_1D, 'ro', 'HandleVisibility','off')
-legend('Multiplication time 2D', 'Multiplication time 1D', '', '')
+plot(num_eig, elapsed_mult + elapsed_inv)
+hold on, grid on
+plot(num_eig, elapsed_mult_1D + elapsed_inv_1D)
+
+plot(num_eig, elapsed_mult + elapsed_inv, 'o', 'Color', [0 0.4470 0.7410], 'HandleVisibility','off')
+plot(num_eig, elapsed_mult_1D + elapsed_inv_1D, 'o', 'Color', [0.8500 0.3250 0.0980], 'HandleVisibility','off')
+xlabel('$N$')
+ylabel('Time [$s$]')
+legend('Multiplication time 2D', 'Multiplication time 1D', 'Location', 'Best')
