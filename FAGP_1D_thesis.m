@@ -32,7 +32,7 @@ y_star = (y_star - min(y_star)) / (max(y_star) - min(y_star));
 n = 3; % # of eigenvalues (3)
 
 % Classic GP
-l = 3; % Scale factor
+l = 15;%3; % Scale factor
 epsilon = 1/(sqrt(2)*l); % Parameter depending on scale factor
 tic
 K = exp(-epsilon^2*pdist2(x, x).^2);
@@ -66,10 +66,13 @@ for eigv = n:3:15
 
     str_title = "FAGP with " + num2str(eigv) + " eigs";
     figure
-    title(str_title);
+%     title(str_title);
     hold on,grid on
     plot(X, ys)
     plot(x, y, '--')
+    xlabel('x')
+    ylabel('y')
+    legend('GP mean', 'Real function', 'Location', 'north')
     
 %     pause(2);
     
